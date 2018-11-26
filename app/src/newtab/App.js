@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import { Footer } from './components/Footer/Footer';
+
 export class App extends Component {
   render() {
 
@@ -10,6 +12,7 @@ export class App extends Component {
           haha
         </h1>
         <img src="https://images.pexels.com/photos/988872/pexels-photo-988872.jpeg" />
+        <Footer />
       </div>
     )
   }
