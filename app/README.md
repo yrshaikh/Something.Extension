@@ -1,4 +1,4 @@
-# Clepsydra
+# Something
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 We ejected to be able to customize the build process.

@@ -61,7 +61,6 @@ module.exports = {
   entry: {
     index: [require.resolve('./polyfills'), paths.appIndexJs],
     newtab: [require.resolve('./polyfills'), paths.newtabJs],
-    popup: [require.resolve('./polyfills'), paths.popupJs]
   },
   output: {
     // Add /* filename */ comments to generated require()s in the output.
@@ -254,7 +253,6 @@ module.exports = {
     // Generates an `index.html` file with the <script> injected.
     htmlPlugin({ template: paths.appHtml, chunks: ['index'], filename: 'index.html' }),
     htmlPlugin({ template: paths.newtabHtmlDev, chunks: ['newtab'], filename: 'newtab.html' }),
-    htmlPlugin({ template: paths.popupHtml, chunks: ['popup'], filename: 'popup.html' }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
