@@ -6,7 +6,6 @@ export class Footer extends Component {
 
     return (
       <div>
-        This is a beginning.
       </div>
     )
   }

@@ -1,0 +1,9 @@
+.Greet {
+}
+
+.Greet__heading, .Greet__time {
+    font-size: 48px;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
