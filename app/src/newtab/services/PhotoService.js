@@ -1,31 +1,70 @@
-import Unsplash, { toJson } from 'unsplash-js';
+import { AjaxService } from './AjaxService';
 import { LocalStorageService } from './LocalStorageService';
 
 export class PhotoService {
     constructor() {
-        this.unsplash = new Unsplash({
-            applicationId: "4ea9098287864f4bcb9d6284912e3e520e302224d3acc440e66122172f412650",
-            secret: "35e72e41e723375703cd6c6edda3f4fc15a709b2d26e0933940454140a6093e9"
-        });
-        this.localStorageService = new LocalStorageService('backgroundImage');
+        this.ajaxService = new AjaxService();
+        this.currentImage = new LocalStorageService('currentImage');
+        this.imageStore = new LocalStorageService('imageStore');
+        this.collectionUrl = 'https://api.unsplash.com/collections/3582579?per_page=100&client_id=4ea9098287864f4bcb9d6284912e3e520e302224d3acc440e66122172f412650';
     }
-    async get(refresh) {
-        if (refresh) {
-            localStorage.removeItem(this.key);
+    async get() {
+        let image = this.getImageFromCache();
+
+        if (image) {
+            return image;
         }
-        else {
-            const url = this.localStorageService.get();
-            if (url) {
-                return url;
-            }
+
+        let imageStore = this.getImageStoreFromCache();
+        if (imageStore) {
+            image = this.getRandomImageFromStore(imageStore);
+            this.setImageToCache(image);
+            return image;
         }
-        let response = await this.unsplash.photos.getRandomPhoto();
-        let photo = await toJson(response);
-        const photoObj = {
-            url: photo.urls.regular,
-            user: photo.user,
-        };
-        this.localStorageService.set(photoObj.url);
-        return photoObj.url;
+
+        imageStore = await this.getImageStoreFromApi();
+        this.setImageStoreToCache(imageStore);
+        image = this.getRandomImageFromStore(imageStore);
+        this.setImageToCache(image);
+        return image;
+    }
+    reset() {
+        this.removeImageFromCache();
+        this.removeImageStoreFromCache();
+    }
+    getImageFromCache() {
+        return JSON.parse(this.currentImage.get());
+    }
+    getImageStoreFromCache() {
+        return JSON.parse(this.imageStore.get());
+    }
+    setImageToCache(value) {
+        return this.currentImage.set(JSON.stringify(value));
+    }
+    setImageStoreToCache(value) {
+        return this.imageStore.set(JSON.stringify(value));
+    }
+    removeImageFromCache() {
+        return this.currentImage.clear();
+    }
+    removeImageStoreFromCache() {
+        return this.imageStore.clear();
+    }
+    getRandomImageFromStore(imageStore) {
+        const randomIndex = Math.floor(Math.random() * imageStore.length);
+        const randomImage = imageStore[randomIndex];
+        return randomImage;
+    }
+    async getImageStoreFromApi(){
+        let apiResponse = await this.ajaxService.get(this.collectionUrl);
+        const imageStore = [];
+        apiResponse.preview_photos.forEach((element, i) => {
+            imageStore.push({
+                id: element.id,
+                url: element.urls.regular,
+                urlHd: element.urls.full
+            });
+        });
+        return imageStore;
     }
 }

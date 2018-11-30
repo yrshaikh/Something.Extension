@@ -1,16 +1,28 @@
 body {
     color: #333;
-    font-family: 'Lato', sans-serif;
-    
+    font-family: 'Roboto', sans-serif;
     margin: auto;
     background-color: #909090;
-    width: 60%;
     padding: none;
     min-height: 100%;
 }
 
-#App {
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 800px;
+#App {}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+}
+
+#background li {
+    height: 100%;
+    min-height: 100%;
+    background-color: transparent !important;
+    background-size: cover !important;
 }

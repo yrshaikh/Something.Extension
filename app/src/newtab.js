@@ -5,4 +5,4 @@ import { App } from './newtab/App';
 ReactDOM.render(
     <App />,
     document.getElementById('root')
-)
+);
