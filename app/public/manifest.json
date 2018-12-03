@@ -1,9 +1,9 @@
 {
-  "short_name": "Something.Extension",
-  "name": "Something.Extension",
+  "short_name": "Bravo",
+  "name": "Bravo Tabs",
   "version": "0.3",
   "manifest_version": 2,
-  "description": "A plain text description",
+  "description": "A light weight new tab extension to help increase your productivity.",
   "icons": {
     "128": "icon_128.png"
   },

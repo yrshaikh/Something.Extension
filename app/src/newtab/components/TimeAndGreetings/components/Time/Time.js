@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Time.css';
+import { CommonService } from '../../../../services/CommonService';
 
 export class Time extends Component {
     constructor() {
@@ -7,6 +8,7 @@ export class Time extends Component {
         this.state = {
             time: null
         };
+        this.commonService = new CommonService();
     }
     componentDidMount() {
         this.interval = setInterval(() => this.setFormattedTime(), 100);
@@ -20,16 +22,6 @@ export class Time extends Component {
         );
     }
     setFormattedTime() {
-        const date = new Date();
-        const
-            hour = date.getHours(),
-            minute = date.getMinutes(),
-            second = date.getSeconds(),
-            hourFormatted = hour % 12 || 12, // hour returned in 24 hour format
-            minuteFormatted = minute < 10 ? '0' + minute : minute,
-            morning = hour < 12 ? 'AM' : 'PM';
-
-        const formattedTime = `${hourFormatted}:${minuteFormatted}:${second} ${morning}`;
-        this.setState({ time: formattedTime });
+        this.setState({ time: this.commonService.getCurrentTime() });
     }
 }

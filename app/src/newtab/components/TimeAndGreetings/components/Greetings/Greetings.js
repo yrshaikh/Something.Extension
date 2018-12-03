@@ -24,6 +24,7 @@ export class Greetings extends Component {
         const
             hour = date.getHours(),
             morning = hour < 12 ? 'AM' : 'PM';
-        this.setState({ message: morning === 'AM' ? 'Good Morning' : 'Good Evening' });
+        const greet = morning === 'AM' ? 'Good Morning' : 'Good Evening';
+        this.setState({ message: `${greet}.` });
     }
 }

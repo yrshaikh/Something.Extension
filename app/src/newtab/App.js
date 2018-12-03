@@ -3,7 +3,7 @@ import './App.css';
 
 import { TimeAndGreetings } from './components/TimeAndGreetings/TimeAndGreetings';
 import { Footer } from './components/Footer/Footer';
-import { PhotoService } from './services/PhotoService';
+import { FlickrService } from './services/FlickrService';
 
 export class App extends Component {
     constructor() {
@@ -11,25 +11,18 @@ export class App extends Component {
         this.state = {
             backgroundImage: null
         };
-        this.photoService = new PhotoService();
-        this.resetBackgroundImage = this.resetBackgroundImage.bind(this);
+        this.flickrService = new FlickrService();
     }
     componentDidMount() {
         this.loadBackground();
     }
     async loadBackground() {
-        const image = await this.photoService.get();
-        console.log('image in loadBackground', image);
-        this.setState({ backgroundImage: image.urlHd });
-    }
-    renderClearButton() {
-        return (
-            <button onClick={this.resetBackgroundImage}>Reset</button>
-        );
+        const image = await this.flickrService.get('morning');
+        this.setState({ backgroundImage: image });
     }
     render() {
         if (this.state === null || this.state.backgroundImage === null)
-            return <div>loading...</div>;
+            return null;
         return (
             <div id="App" >
                 <ul id="background">
@@ -37,13 +30,8 @@ export class App extends Component {
                     </li>
                 </ul>
                 <TimeAndGreetings />
-                {this.renderClearButton()}
                 <Footer />
             </div>
         );
-    }
-    async resetBackgroundImage() {
-        this.photoService.reset();
-        this.loadBackground();
     }
 }
