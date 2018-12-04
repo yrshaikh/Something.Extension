@@ -16,7 +16,7 @@ export class Greetings extends Component {
     }
     render() {
         return (
-            <h1 className="Greetings">{this.state.message}</h1>
+            <h2 className="Greetings">{this.state.message}</h2>
         );
     }
     setGreetings() {

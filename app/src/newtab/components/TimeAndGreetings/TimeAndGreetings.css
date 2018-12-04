@@ -6,11 +6,14 @@
     text-align: center;
     transform: translate(-50%, -50%);
     position: absolute;
-
-    text-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    color: white;
 }
 
 .TimeAndGreetings h1 {
-    color: white;
-    font-size: 50px;
+    font-size: 48px;
+}
+
+.TimeAndGreetings h2 {
+    font-size: 20px;
 }

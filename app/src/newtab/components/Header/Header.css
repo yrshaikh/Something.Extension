@@ -1,0 +1,36 @@
+.Header {
+    height: 45px;
+    background: #333;
+    opacity: 0.3;
+    color: #fff;
+}
+
+.Header:hover {
+    background: #333;
+    opacity: 0.9;
+    color: #fff;
+}
+
+.Header_childContainer {
+    padding: 10px 50px;
+}
+
+.Header__child {
+    font-size: 14px;
+    list-style: none;
+    min-width: 80px;
+    display: inline-block;
+}
+
+.Header__child:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.Header__child--brand {
+    font-weight: 700;
+}
+
+.Header__child--flyRight {
+    float: right;
+}
