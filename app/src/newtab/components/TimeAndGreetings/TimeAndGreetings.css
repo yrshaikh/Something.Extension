@@ -1,13 +1,14 @@
 .TimeAndGreetings {
     display: block;
-    top: 50%;
-    left: 50%;
+    bottom: 0;
     width: 100%;
     text-align: center;
-    transform: translate(-50%, -50%);
+    /*transform: translate(-50%, -50%);*/
     position: absolute;
     text-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
     color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-bottom: 25px;
 }
 
 .TimeAndGreetings h1 {
@@ -16,4 +17,8 @@
 
 .TimeAndGreetings h2 {
     font-size: 20px;
+}
+
+.TimeAndGreetings h4 {
+    font-size: 14px;
 }

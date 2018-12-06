@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CommonService } from '../../../../services/CommonService';
 import './Greetings.css';
 
 export class Greetings extends Component {
@@ -7,6 +8,7 @@ export class Greetings extends Component {
         this.state = {
             message: null
         };
+        this.commonService = new CommonService();
     }
     componentDidMount() {
         this.interval = setInterval(() => this.setGreetings(), 100);
@@ -20,11 +22,15 @@ export class Greetings extends Component {
         );
     }
     setGreetings() {
-        const date = new Date();
-        const
-            hour = date.getHours(),
-            morning = hour < 12 ? 'AM' : 'PM';
-        const greet = morning === 'AM' ? 'Good Morning' : 'Good Evening';
-        this.setState({ message: `${greet}.` });
+        const hour = this.commonService.getCurrentHour();
+        let greet = '';
+        if (hour <= 11) 
+            greet = 'Morning';
+        else if (hour <= 16)
+            greet = 'Afternoon';
+        else 
+            greet = 'Evening';
+
+        this.setState({ message: `Good ${greet}, Beautiful!` });
     }
 }

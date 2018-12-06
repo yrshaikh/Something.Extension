@@ -1,9 +1,9 @@
 {
   "short_name": "Bravo New Tabs",
   "name": "Bravo New Tabs",
-  "version": "0.3",
-  "manifest_version": 3,
-  "description": "A light weight new tab extension which shows a new background image every hour.",
+  "version": "2.3",
+  "manifest_version": 2,
+  "description": "A light weight new tab extension which shows a new awe-inspriring image every hour.",
   "icons": {
     "128": "icon_128.png"
   },

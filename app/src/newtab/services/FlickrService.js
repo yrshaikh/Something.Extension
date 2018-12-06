@@ -15,21 +15,31 @@ export class FlickrService {
         if (imageUrlFromCache)
             return imageUrlFromCache;
 
-        const requestUrl = this.buildUrl();
-        const response = await this.ajaxService.get(requestUrl);
-        const photos = response.photos.photo;
-        const selectedIndex = photos.length == 1 ? 0 : this.commonService.getRandomNumber(0, photos.length) - 1;
-        const imageUrl = this.buildImagePath(photos[selectedIndex]);
+        let imageUrl = '';
+        try {
+            const requestUrl = this.buildUrl();
+            const response = await this.ajaxService.get(requestUrl);
+            const photos = response.photos.photo;
+            const selectedIndex = photos.length == 1 ? 0 : this.commonService.getRandomNumber(0, photos.length-1);
+            imageUrl = this.buildImagePath(photos[selectedIndex]);
 
-        this.localStorageService.set(imageUrl);
+            this.localStorageService.set(imageUrl);
+        }
+        catch (error) {
+            console.log(error);
+            imageUrl = 'err';
+        }
         return imageUrl;
     }
     buildImagePath(photo) {
         // https://www.flickr.com/services/api/misc.urls.html
-        return `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_h.jpg`;
+        const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_h.jpg`;
+        console.log(url);
+        return url;
     }
     buildUrl() {
-        return 'https://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=1729040527eabf65a4cfd91aae30b184&gallery_id=' + this.key + '&format=json&nojsoncallback=1';
+        const url = 'https://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=1729040527eabf65a4cfd91aae30b184&gallery_id=' + this.key + '&format=json&nojsoncallback=1';
+        return url;
     }
     clear() {
         this.localStorageService.clear();

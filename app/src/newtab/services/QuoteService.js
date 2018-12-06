@@ -8,11 +8,12 @@ export class QuoteService {
             '“I have not failed. I\'ve just found 10,000 ways that won\'t work.”― Thomas A.Edison',
             '“That which does not kill us makes us stronger.” ― Friedrich Nietzsche',
             '“For every minute you are angry you lose sixty seconds of happiness.” ― Ralph Waldo Emerson',
-            '“If you judge people, you have no time to love them.”― Mother Teresa'
+            '“If you judge people, you have no time to love them.”― Mother Teresa',
+            
         ];
         this.commonService = new CommonService();
     }
     get() {
-        return this.quotes[this.commonService.getRandomNumber(0, this.quotes.length)];
+        return this.quotes[this.commonService.getRandomNumber(0, this.quotes.length-1)];
     }
 }

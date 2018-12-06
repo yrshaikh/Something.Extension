@@ -15,7 +15,7 @@ export class Quotes extends Component {
     }
     render() {
         return (
-            <h2 className="Greetings">{this.state.message}</h2>
+            <h4 className="Quotes">{this.state.message}</h4>
         );
     }
 }

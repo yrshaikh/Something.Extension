@@ -6,12 +6,11 @@ export class CommonService {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    isPM() {
+    getCurrentHour() {
         const date = new Date();
         const
-            hour = date.getHours(),
-            morning = hour < 12 ? 'AM' : 'PM';
-        return morning === 'PM';
+            hour = date.getHours();
+        return hour;
     }
     getCurrentTime() {
         const date = new Date();
